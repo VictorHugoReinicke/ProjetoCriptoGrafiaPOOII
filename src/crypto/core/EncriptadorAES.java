@@ -47,8 +47,31 @@ public class EncriptadorAES implements CifraStrategy {
 
 	@Override
 	public String decrypt(String textoCripto, byte[] rawKey) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if (textoCripto == null) return null;
+
+        byte[] decodifica = Base64.getDecoder().decode(textoCripto); //decodifica o base64
+        ByteBuffer byteBuffer = ByteBuffer.wrap(decodifica);
+
+       
+        int ivSize = byteBuffer.get() & 0xFF;
+        if (ivSize != TAMANHO_IV_BYTES) {
+            throw new SecurityException("Algo foi alterado do original");
+        }
+
+        byte[] iv = new byte[ivSize];
+        byteBuffer.get(iv);
+
+        byte[] cipherTextBytes = new byte[byteBuffer.remaining()];
+        byteBuffer.get(cipherTextBytes);
+
+        
+        SecretKeySpec chaveSecreta= new SecretKeySpec(rawKey, "AES");
+        Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        cipher.init(Cipher.DECRYPT_MODE, chaveSecreta, new GCMParameterSpec(TAMANHO_BITS, iv)); //Configuração pra acontecer a decriptografia
+
+        
+        byte[] textoLimpoBytes = cipher.doFinal(cipherTextBytes);
+        return new String(textoLimpoBytes, StandardCharsets.UTF_8);
 	}
 
 	@Override

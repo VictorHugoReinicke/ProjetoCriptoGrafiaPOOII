@@ -76,8 +76,7 @@ public class EncriptadorAES implements CifraStrategy {
 
 	@Override
 	public String getAlgorithmIdentifier() {
-		// TODO Auto-generated method stub
-		return null;
+		return "AES-GCM-256-ENVELOPE";
 	}
 
 }

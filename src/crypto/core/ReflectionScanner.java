@@ -45,7 +45,7 @@ public class ReflectionScanner {
 	 * Método que pega o valor de um campo vindo de um objeto, usando métodos para
 	 * garantir a acessibilidade
 	 * 
-	 * @param target O objeto do qual o valor será extraído
+	 * @param alvo O objeto do qual o valor será extraído
 	 * @field O valor do atributo que queremos ler
 	 * @return O valor contido no atributo
 	 * @throws IllegalAccessException Se o acesso for negado pela JVM
@@ -62,6 +62,28 @@ public class ReflectionScanner {
 			return campo.get(alvo);
 		} finally {
 			// Restaura o estado original de visibilidade
+			if (!acessibilidade) {
+				campo.setAccessible(false);
+			}
+		}
+	}
+	/**
+     * Usa um set pra colocar um valor dentro de um atributo específico de um objeto e usando o canAccess igual o método GetValorCampo
+     *
+     * @param alvo O objeto que receberá o valor
+     * @param campo O metadado do atributo a ser modificado
+     * @param valor O valor a ser injetado
+     * @throws IllegalAccessException Se o acesso for negado pela JVM.
+     */
+	public static void SetValorCampo(Object alvo, Field campo, Object valor) throws IllegalAccessException {
+		boolean acessibilidade = campo.canAccess(alvo);
+		if (!acessibilidade) {
+			campo.setAccessible(true);
+		}
+
+		try {
+			campo.set(alvo, valor);
+		} finally {
 			if (!acessibilidade) {
 				campo.setAccessible(false);
 			}

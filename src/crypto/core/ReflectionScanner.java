@@ -46,7 +46,7 @@ public class ReflectionScanner {
 	 * garantir a acessibilidade
 	 * 
 	 * @param alvo O objeto do qual o valor será extraído
-	 * @field O valor do atributo que queremos ler
+	 * @param O valor do atributo que queremos ler
 	 * @return O valor contido no atributo
 	 * @throws IllegalAccessException Se o acesso for negado pela JVM
 	 */

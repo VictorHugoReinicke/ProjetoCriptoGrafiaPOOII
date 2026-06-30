@@ -16,7 +16,14 @@ public class EnvKeyVault implements KeyVault {
 	private static final String ENV_VAR_NOME = "KEY_ORM";
 	private static final String SYS_NAME = "crypto.master.key";
 	private static final String DEFAULT_FALLBACK_SEED = "FallBackSeedEvitandoCairPorFavorMeDa1056!";
-
+	
+	/**
+     * Construtor padrão da classe EnvKeyVault
+     */
+    public EnvKeyVault() {
+        super();
+    }
+	
 	@Override
 	public byte[] retrieveKey() throws Exception {
 		String seed = System.getenv(ENV_VAR_NOME); //tenta pegar a senha vinda do próprio pc

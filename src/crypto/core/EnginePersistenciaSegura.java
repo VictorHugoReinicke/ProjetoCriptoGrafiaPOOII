@@ -22,6 +22,13 @@ public class EnginePersistenciaSegura {
 	private final CifraStrategy cifraStrategy;
 	private final KeyVault keyVault;
 
+	
+	/**
+     * Construtor para injeção de dependências do motor
+     *
+     * @param cifraStrategy A estratégia de criptografia que vai ser usada
+     * @param keyVault O cofre que gerencia as chaves.
+     */
 	public EnginePersistenciaSegura(CifraStrategy cifraStrategy, KeyVault keyVault) {
 		this.cifraStrategy = cifraStrategy;
 		this.keyVault = keyVault;

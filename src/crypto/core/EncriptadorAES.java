@@ -24,6 +24,13 @@ public class EncriptadorAES implements CifraStrategy {
 	 private static final int TAMANHO_BITS = 128;
 	 private static final int TAMANHO_IV_BYTES = 12;
 	
+	 /**
+	  * Construtor padrão explicitado com comentário para documentação Javadoc.
+	  */
+	    public EncriptadorAES() {
+	        super();
+	    }
+	 
 	@Override
 	public String encrypt(String textoLimpo, byte[] rawKey) throws Exception {
 		if(textoLimpo ==null) return null;

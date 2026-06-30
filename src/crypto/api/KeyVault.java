@@ -11,7 +11,7 @@ package crypto.api;
 public interface KeyVault {
 
 	/**
-	 * 
+	 * Recupera a chave ativa no sistema. 
 	 * @return Um array de bytes que representa a chave de segurança.
 	 * @throws Exception Caso ocorra alguma falha
 	 * 
